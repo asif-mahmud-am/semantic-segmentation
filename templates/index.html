@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-<p><h1 align="center">Python Flask Upload and display image</h1></p>
+<p><h1 align="center">Python Blur imagee</h1></p>
 <div class="container">
 <div class="row">
     <h2>Select a file to upload</h2>
@@ -22,8 +22,22 @@
     </p>
     {% if filename %}
         <div>
-            <img height="400" src="{{ url_for('display_image', filename=filename) }}">
-            <img src="{{ url_for('display_image', filename=filename2) }}">
+            <img style="max-width:100%;" src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+        <div>
+            <form method="POST" action="/show" class="">
+                <select name="labels" id="cars" class="mr-3">
+                    <option value="" selected>Select a option</option>
+                    {% for i in print_labels %}
+                    <option value="{{i[0]}}">{{i[1]}}</option>
+                    {% endfor %}
+                  </select>
+                  <input type="hidden" name="org_img" value="{{org_img}}">
+                  <input type="submit" value="Submit" class="btn btn-primary">
+                
+
+            </form>  
+           
         </div>
     {% endif %}
     <form method="post" action="/" enctype="multipart/form-data">
